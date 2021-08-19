@@ -11,3 +11,5 @@ const getProfileData = async () => {
   const nameNode = document.querySelector('h1');
   nameNode.textContent = name;
 }
+
+getProfileData();
