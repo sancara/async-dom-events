@@ -9,12 +9,13 @@ const getProfileData = async () => {
   const name = await profileData.owner.login;
   const avatarUrl = await profileData.owner.avatar_url;
   const repositories = await getReposFromOwner()
-  console.log(repositories);
+  
   
   const nameNode = document.querySelector('h1');
   nameNode.textContent = name;
   const avatarNode = document.querySelector('#avatar');
   avatarNode.src = avatarUrl;
+  const reposList = repositories.slice(0,5);
 }
 
 getProfileData();
@@ -24,5 +25,5 @@ const getReposFromOwner = async () => {
   const repos = await reposFromOwner.owner.repos_url;
   const reposResponse = await fetch(repos);
   const reposResponseJson = reposResponse.json();
-  return reposResponseJson.slice(0,5);
+  return reposResponseJson;
 }
