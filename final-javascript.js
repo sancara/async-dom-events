@@ -11,11 +11,23 @@ const getProfileData = async () => {
   const repositories = await getReposFromOwner()
   
   
-  const nameNode = document.querySelector('h1');
+  const nameNode = document.querySelector("h1");
   nameNode.textContent = name;
-  const avatarNode = document.querySelector('#avatar');
+  const avatarNode = document.querySelector("#avatar");
   avatarNode.src = avatarUrl;
-  const reposList = repositories.slice(0,5);
+  const reposList = await repositories;
+  reposList.forEach((repo) => {
+    const repoUrl = document.createElement("a");
+    const reposNodeParent = document.querySelector(".repos-list");
+    repoUrl.textContent = repo.html_url;
+    repoUrl.href = repo.html_url;
+
+    reposNodeParent.appendChild(repoUrl);
+  });
+
+  console.log(reposList);
+
+  return profileData;
 }
 
 getProfileData();
@@ -25,5 +37,5 @@ const getReposFromOwner = async () => {
   const repos = await reposFromOwner.owner.repos_url;
   const reposResponse = await fetch(repos);
   const reposResponseJson = reposResponse.json();
-  return reposResponseJson;
+  return reposResponseJson.slice(0, 5);
 }
