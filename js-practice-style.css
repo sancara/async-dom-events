@@ -163,3 +163,13 @@ img {
   border-radius: 50%;
   border: solid 2px #e9c46a;
 }
+
+.repos-list {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: #e76f51;
+}
+
