@@ -36,6 +36,6 @@ const getReposFromOwner = async () => {
   const reposFromOwner = await getDataFromGit();
   const repos = await reposFromOwner.owner.repos_url;
   const reposResponse = await fetch(repos);
-  const reposResponseJson = reposResponse.json();
+  const reposResponseJson = await reposResponse.json();
   return reposResponseJson.slice(0, 5);
 }
